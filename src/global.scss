@@ -24,3 +24,26 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --ion-font-family: 'Inter', sans-serif;
+}
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+@each $weight in (
+  300,
+  400,
+  500,
+  600,
+  700,
+  800,
+) {
+  .font-weight-#{$weight} {
+      font-weight: $weight;
+  }
+}

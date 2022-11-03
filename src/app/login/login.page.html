@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      LOGIN
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-item fill="solid">
+        <ion-label position="floating" class="font-weight-500">E-mail</ion-label>
+        <ion-input [clearInput]="true" type="email" class="font-weight-400" ngModel email></ion-input>
+        <ion-note slot="helper">Insira um e-mail</ion-note>
+        <ion-note slot="error">E-mail inválido</ion-note>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-label position="stacked">Senha</ion-label>
+        <ion-input type="password" placeholder="Insira sua senha"></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-button expand="block">Fazer Login</ion-button>
+    </ion-row>
+    <ion-row>
+      <ion-button expand="block" color="danger">Registrar</ion-button>
+    </ion-row>
+  </ion-grid>
+</ion-content>
