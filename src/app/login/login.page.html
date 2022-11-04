@@ -1,17 +1,26 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header [translucent]="true" mode="ios">
+  <ion-toolbar mode="md">
     <ion-title>
-      LOGIN
+      FAZER LOGIN
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" mode="ios">
   <ion-grid>
     <ion-row>
-      <ion-item fill="solid">
-        <ion-label position="floating" class="font-weight-500">E-mail</ion-label>
-        <ion-input [clearInput]="true" type="email" class="font-weight-400" ngModel email></ion-input>
+      <ion-card color="purple">
+        <img alt="Floating astronaut" src="https://ouch-cdn2.icons8.com/wm0zXos_ml_B9g8yUd-a1TQj3TRz-FBLiAkW2t1SI98/rs:fit:299:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy91aS1lbGVt/LzMxMi8xODA0Yzhk/My00ZjVhLTQyYzMt/OTZmYS1mYWY2MmUx/ZjFiMTAucG5n.png" />
+        <ion-card-header>
+          <ion-card-title style="font-size: 1.25rem">BEM-VINDO FORM-SUÁRIO!</ion-card-title>
+          <ion-card-subtitle>🌱 Venha ser mais um membro Forms</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-label position="stacked" class="font-weight-500">E-mail</ion-label>
+        <ion-input autofocus="true" [clearInput]="true" type="email" class="font-weight-400" placeholder="nome@em.com" ngModel email></ion-input>
         <ion-note slot="helper">Insira um e-mail</ion-note>
         <ion-note slot="error">E-mail inválido</ion-note>
       </ion-item>
@@ -19,14 +28,18 @@
     <ion-row>
       <ion-item>
         <ion-label position="stacked">Senha</ion-label>
-        <ion-input type="password" placeholder="Insira sua senha"></ion-input>
+        <ion-input [clearInput]="true" type="password" placeholder="Insira sua senha"></ion-input>
+        <ion-note slot="helper">Insira uma senha válida</ion-note>
       </ion-item>
     </ion-row>
-    <ion-row>
-      <ion-button expand="block">Fazer Login</ion-button>
-    </ion-row>
-    <ion-row>
-      <ion-button expand="block" color="danger">Registrar</ion-button>
-    </ion-row>
+    <div id="login-buttons">
+      <ion-row>
+        <ion-button fill="outline" expand="block" color="tertiary" class="font-weight-700">FAZER LOGIN</ion-button>
+      </ion-row>
+      <ion-row id="already-has-account">
+        <ion-label>Ainda não é usuário?</ion-label>
+        <ion-button fill="outline" expand="block" color="lime" routerLink="/register" class="font-weight-700">REGISTRE-SE</ion-button>
+      </ion-row>
+    </div>
   </ion-grid>
 </ion-content>
