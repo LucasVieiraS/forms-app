@@ -29,6 +29,13 @@
     </ion-row>
     <ion-row>
       <ion-item>
+        <ion-label position="stacked">CPF</ion-label>
+        <ion-input [clearInput]="true" type="number" placeholder="Insira seu CPF"></ion-input>
+        <ion-note slot="helper">Insira seu CPF</ion-note>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-item>
         <ion-label position="stacked">Senha</ion-label>
         <ion-input [clearInput]="true" type="password" placeholder="Insira sua senha"></ion-input>
         <ion-note slot="helper">Insira uma senha válida</ion-note>
@@ -48,6 +55,7 @@
       <ion-row id="already-has-account">
         <ion-label>Já possui uma conta?</ion-label>
         <ion-button fill="outline" expand="block" color="lime" class="font-weight-700" routerLink="/login">VOLTAR AO LOGIN</ion-button>
+        <a href="/register"><ion-label>Esqueceu sua senha?</ion-label></a>
       </ion-row>
     </div>
   </ion-grid>
