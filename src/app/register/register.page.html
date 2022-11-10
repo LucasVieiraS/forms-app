@@ -8,55 +8,93 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" mode="ios">
   <ion-grid>
-    <ion-row>
-      <ion-card color="purple">
-        <img alt="Rocket ship facing the sky" src="https://ouch-cdn2.icons8.com/I7f3gu3VFD-I26j91xnJLAMkQbSJfI05nEpE47_Ve8E/rs:fit:256:213/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvNjc1/LzNjN2Q3YmI4LTI5/YWUtNDE1My1hMjky/LTI2YjgxZTVkYTZm/My5zdmc.png" />
-        <ion-card-header>
-          <ion-card-title>ESPERAR PRA QUE?</ion-card-title>
-          <ion-card-subtitle>🚀 Venha ser mais um membro Forms</ion-card-subtitle>
-        </ion-card-header>
-      </ion-card>
-    </ion-row>
-    <ion-row>
-      <ion-item>
-        <ion-label position="stacked" class="font-weight-500">E-mail</ion-label>
-        <ion-input autofocus="true" [clearInput]="true" type="email" class="font-weight-400" placeholder="nome@em.com" ngModel email></ion-input>
-        <ion-note slot="helper">Insira um e-mail</ion-note>
-        <ion-note slot="error">E-mail inválido</ion-note>
-      </ion-item>
-    </ion-row>
-    <ion-row>
-      <ion-item>
-        <ion-label position="stacked">CPF</ion-label>
-        <ion-input [clearInput]="true" type="number" placeholder="Insira seu CPF"></ion-input>
-        <ion-note slot="helper">Insira seu CPF</ion-note>
-      </ion-item>
-    </ion-row>
-    <ion-row>
-      <ion-item>
-        <ion-label position="stacked">Senha</ion-label>
-        <ion-input [clearInput]="true" type="password" placeholder="Insira sua senha"></ion-input>
-        <ion-note slot="helper">Insira uma senha válida</ion-note>
-      </ion-item>
-    </ion-row>
-    <ion-row>
-      <ion-item>
-        <ion-label position="stacked">Confirmar Senha</ion-label>
-        <ion-input [clearInput]="true" type="password" placeholder="Insira sua senha"></ion-input>
-        <ion-note slot="helper">As senhas não são iguais.</ion-note>
-      </ion-item>
-    </ion-row>
-    <div id="login-buttons">
-      <ion-row>
-        <ion-button fill="outline" expand="block" color="tertiary" routerLink="/register" class="font-weight-700">REGISTRAR</ion-button>
-      </ion-row>
-      <ion-row id="already-has-account">
-        <ion-label>Já possui uma conta?</ion-label>
-        <ion-button fill="outline" expand="block" color="lime" class="font-weight-700" routerLink="/login">VOLTAR AO LOGIN</ion-button>
-        <a href="/register"><ion-label>Esqueceu sua senha?</ion-label></a>
-      </ion-row>
-    </div>
+    <ion-card color="purple">
+      <img
+        alt="Rocket ship facing the sky"
+        src="https://ouch-cdn2.icons8.com/I7f3gu3VFD-I26j91xnJLAMkQbSJfI05nEpE47_Ve8E/rs:fit:256:213/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvNjc1/LzNjN2Q3YmI4LTI5/YWUtNDE1My1hMjky/LTI2YjgxZTVkYTZm/My5zdmc.png"
+      />
+      <ion-card-header>
+        <ion-card-title>ESPERAR PRA QUE?</ion-card-title>
+        <ion-card-subtitle>🚀 Venha ser mais um membro Forms</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-item>
+            <ion-label position="stacked" class="font-weight-500"
+              >E-mail</ion-label
+            >
+            <ion-input
+              autofocus="true"
+              [clearInput]="true"
+              type="email"
+              class="font-weight-400"
+              placeholder="nome@em.com"
+              ngModel
+              email
+            ></ion-input>
+            <ion-note slot="helper">Insira um e-mail</ion-note>
+            <ion-note slot="error">E-mail inválido</ion-note>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item>
+            <ion-label position="stacked">CPF</ion-label>
+            <ion-input
+              [clearInput]="true"
+              type="text"
+              placeholder="Insira seu CPF"
+            ></ion-input>
+            <ion-note slot="helper">Insira seu CPF</ion-note>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item>
+            <ion-label position="stacked">Senha</ion-label>
+            <ion-input
+              [clearInput]="true"
+              type="password"
+              placeholder="Insira sua senha"
+            ></ion-input>
+            <ion-note slot="helper">Insira uma senha válida</ion-note>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item>
+            <ion-label position="stacked">Confirmar Senha</ion-label>
+            <ion-input
+              [clearInput]="true"
+              type="password"
+              placeholder="Insira sua senha"
+            ></ion-input>
+            <ion-note slot="helper">As senhas não são iguais.</ion-note>
+          </ion-item>
+        </ion-row>
+        <div id="login-buttons">
+          <ion-row>
+            <ion-button
+              fill="outline"
+              expand="block"
+              color="tertiary"
+              routerLink="/register"
+              class="font-weight-700"
+              >REGISTRAR</ion-button
+            >
+          </ion-row>
+          <ion-row id="already-has-account">
+            <ion-label>Já possui uma conta?</ion-label>
+            <ion-button
+              fill="outline"
+              expand="block"
+              color="lime"
+              class="font-weight-700"
+              routerLink="/login"
+              >VOLTAR AO LOGIN</ion-button
+            >
+          </ion-row>
+        </div>
+      </ion-card-content>
+    </ion-card>
   </ion-grid>
 </ion-content>

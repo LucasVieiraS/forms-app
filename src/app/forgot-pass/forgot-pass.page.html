@@ -1,6 +1,10 @@
 <ion-header [translucent]="true" mode="ios">
   <ion-toolbar mode="md">
-    <ion-title> FAZER LOGIN </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button text="Voltar" color="danger"></ion-back-button>
+    </ion-buttons>
+    <ion-title>ESQUECI SENHA</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +13,7 @@
     <ion-card color="purple">
       <img
         alt="Floating astronaut"
-        src="https://ouch-cdn2.icons8.com/wm0zXos_ml_B9g8yUd-a1TQj3TRz-FBLiAkW2t1SI98/rs:fit:299:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy91aS1lbGVt/LzMxMi8xODA0Yzhk/My00ZjVhLTQyYzMt/OTZmYS1mYWY2MmUx/ZjFiMTAucG5n.png"
+        src="https://ouch-cdn2.icons8.com/NmRAH8paDSVLJxJelz1K7DD524VrRZx9ocmetN3uxOk/rs:fit:256:203/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvOTI2/L2E5NGNkMGM2LWRk/NDktNDZiMi05OGEw/LWQ2ZWFhMzgzOGRi/Zi5zdmc.png"
       />
       <ion-card-header>
         <ion-card-title style="font-size: 1.05rem; font-weight: 800"
@@ -22,31 +26,13 @@
       <ion-card-content>
         <ion-row>
           <ion-item>
-            <ion-label position="stacked" class="font-weight-500"
-              >E-mail</ion-label
-            >
-            <ion-input
-              autofocus="true"
-              [clearInput]="true"
-              type="email"
-              class="font-weight-400"
-              placeholder="nome@em.com"
-              ngModel
-              email
-            ></ion-input>
-            <ion-note slot="helper">Insira um e-mail</ion-note>
-            <ion-note slot="error">E-mail inválido</ion-note>
-          </ion-item>
-        </ion-row>
-        <ion-row>
-          <ion-item>
-            <ion-label position="stacked">Senha</ion-label>
+            <ion-label position="stacked">Código de Recuperação</ion-label>
             <ion-input
               [clearInput]="true"
               type="password"
-              placeholder="Insira sua senha"
+              placeholder="Insira um código válido"
             ></ion-input>
-            <ion-note slot="helper">Insira uma senha válida</ion-note>
+            <ion-note slot="helper">Insira um código válido</ion-note>
           </ion-item>
         </ion-row>
         <div id="login-buttons">
@@ -56,20 +42,18 @@
               expand="block"
               color="tertiary"
               class="font-weight-700"
-              >FAZER LOGIN</ion-button
+              >ENVIAR</ion-button
             >
           </ion-row>
           <ion-row id="already-has-account">
-            <ion-label>Ainda não é usuário?</ion-label>
             <ion-button
               fill="outline"
               expand="block"
               color="lime"
               routerLink="/register"
               class="font-weight-700"
-              >REGISTRE-SE</ion-button
+              >RE-ENVIAR CONFIRMAÇÃO</ion-button
             >
-            <a href="/forgot-pass"><ion-label>Esqueceu sua senha?</ion-label></a>
           </ion-row>
         </div>
       </ion-card-content>
