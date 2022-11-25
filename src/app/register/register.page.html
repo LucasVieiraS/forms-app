@@ -32,10 +32,21 @@
                 type="text"
                 class="font-weight-400"
                 placeholder="nome"
+                minlength="3"
                 formControlName="name"
+                autocomplete="name"
               ></ion-input>
-              <ion-note slot="helper" *ngIf="!formRegister.get('name')">Insira um nome</ion-note>
+
             </ion-item>
+            <ng-container *ngFor="let error of errorMessages.name">
+              <ion-note
+                *ngIf="formRegister.get('name').hasError(error.type) &&
+                (formRegister.get('name').dirty ||
+                formRegister.get('name').touched)">
+                {{error.message}}
+                <ion-icon name="close" color="danger"></ion-icon>
+              </ion-note>
+            </ng-container>
           </ion-row>
           <ion-row>
             <ion-item>
@@ -52,9 +63,16 @@
                 ngModel
                 email
               ></ion-input>
-              <ion-note slot="helper" *ngIf="!formRegister.get('email')">Insira um e-mail</ion-note>
-              <ion-note slot="error" *ngIf="formRegister.get('email')">E-mail inválido</ion-note>
             </ion-item>
+            <ng-container *ngFor="let error of errorMessages.email">
+              <ion-note
+                *ngIf="formRegister.get('email').hasError(error.type) &&
+                (formRegister.get('email').dirty ||
+                formRegister.get('email').touched)">
+                {{error.message}}
+                <ion-icon name="close" color="danger"></ion-icon>
+              </ion-note>
+            </ng-container>
           </ion-row>
           <ion-row>
             <ion-item>
@@ -64,9 +82,19 @@
                 type="text"
                 placeholder="Insira seu CPF"
                 formControlName="cpf"
+                minlength="10"
+                maxlength="12"
               ></ion-input>
-              <ion-note slot="helper">Insira seu CPF</ion-note>
             </ion-item>
+            <ng-container *ngFor="let error of errorMessages.cpf">
+              <ion-note
+                *ngIf="formRegister.get('cpf').hasError(error.type) &&
+                (formRegister.get('cpf').dirty ||
+                formRegister.get('cpf').touched)">
+                {{error.message}}
+                <ion-icon name="close" color="danger"></ion-icon>
+              </ion-note>
+            </ng-container>
           </ion-row>
           <ion-row>
             <ion-item>
@@ -76,8 +104,20 @@
                 type="password"
                 placeholder="Insira sua senha"
                 formControlName="password"
+                pattern="password"
+                minlength="6"
+                maxlength="40"
               ></ion-input>
             </ion-item>
+            <ng-container *ngFor="let error of errorMessages.password">
+              <ion-note
+                *ngIf="formRegister.get('password').hasError(error.type) &&
+                (formRegister.get('password').dirty ||
+                formRegister.get('password').touched)">
+                {{error.message}}
+                <ion-icon name="close" color="danger"></ion-icon>
+              </ion-note>
+            </ng-container>
           </ion-row>
           <ion-row>
             <ion-item>
@@ -87,8 +127,23 @@
                 type="password"
                 formControlName="confirmPassword"
                 placeholder="Insira sua senha"
+                minlength="6"
+                maxlength="40"
+                pattern="password"
               ></ion-input>
+              <div class="error-message" *ngIf="!formRegister.get('confirmPassword').errors && formRegister.hasError('passwordNotMatch') && (formRegister.get('confirmPassword').dirty || formRegister.get('confirmPassword').touched)">
+                Password and Confirm Password fields should match
+              </div>
             </ion-item>
+            <ng-container *ngFor="let error of errorMessages.confirmPassword">
+              <ion-note
+                *ngIf="formRegister.get('confirmPassword').hasError(error.type) &&
+                (formRegister.get('confirmPassword').dirty ||
+                formRegister.get('confirmPassword').touched)">
+                {{error.message}}
+                <ion-icon name="close" color="danger"></ion-icon>
+              </ion-note>
+            </ng-container>
           </ion-row>
           <div id="login-buttons">
             <ion-row>

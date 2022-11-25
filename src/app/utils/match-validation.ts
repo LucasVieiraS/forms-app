@@ -1,19 +1,19 @@
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 import { FormGroup } from '@angular/forms';
 
-export function matchValidation(controleNome: string, comparacaoNome: string) {
+export function matchValidation(controlName: string, matchName: string) {
   return (formGroup: FormGroup) => {
-    const controle = formGroup.controls[controleNome];
-    const comparacao = formGroup.controls[comparacaoNome];
+    const control = formGroup.controls[controlName];
+    const match = formGroup.controls[matchName];
 
-    if (controle.errors) {
+    if (control.errors) {
       return;
     }
 
-    if (controle.value !== comparacao.value) {
-      comparacao.setErrors({ comparacao: true });
+    if (control.value !== match.value) {
+      match.setErrors({ match: true });
     } else {
-      comparacao.setErrors(null);
+      match.setErrors(null);
     }
   };
 }
