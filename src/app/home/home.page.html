@@ -1,0 +1,35 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="md">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button text="Voltar" color="danger"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-button routerLink="/register">
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>HOME</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" mode="ios">
+  <ion-item>
+    <ion-label class="font-weight-600">{{usersList.length}} registro{{usersList.length > 1 && 's' || ''}} encontrado{{usersList.length > 1 && 's' || ''}}</ion-label>
+  </ion-item>
+  <ion-grid>
+    <ion-item-sliding *ngFor="let user of usersList">
+
+      <ion-item>
+        <ion-label>{{user.name}}</ion-label>
+        <ion-note style="float: right;">{{user.cpf}}</ion-note>
+        <a href="mailto:{{user.email}}">{{user.email}}</a>
+      </ion-item>
+
+      <ion-item-options>
+        <ion-item-option color="danger" (click)="removeRegister(user.email)"><ion-icon slot="icon-only" name="trash"></ion-icon></ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-grid>
+</ion-content>

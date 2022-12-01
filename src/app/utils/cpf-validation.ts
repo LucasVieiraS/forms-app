@@ -1,7 +1,7 @@
 /* eslint-disable eqeqeq */
 import { FormControl } from '@angular/forms';
 
-export class CpfValidator {
+export class CPFValidator {
   static valid = (control: FormControl): any => {
     const cpfString = String(control.value);
     let rev = 0;

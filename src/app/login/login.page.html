@@ -6,73 +6,91 @@
 
 <ion-content [fullscreen]="true" mode="ios">
   <ion-grid>
-    <ion-card color="purple">
-      <img
-        alt="Floating astronaut"
-        src="https://ouch-cdn2.icons8.com/wm0zXos_ml_B9g8yUd-a1TQj3TRz-FBLiAkW2t1SI98/rs:fit:299:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy91aS1lbGVt/LzMxMi8xODA0Yzhk/My00ZjVhLTQyYzMt/OTZmYS1mYWY2MmUx/ZjFiMTAucG5n.png"
-      />
-      <ion-card-header>
-        <ion-card-title style="font-size: 1.05rem; font-weight: 800"
-          >BEM-VINDO USUÁRIO!</ion-card-title
-        >
-        <ion-card-subtitle style="font-weight: 500"
-          >🌱 Venha ser mais um membro Forms</ion-card-subtitle
-        >
-      </ion-card-header>
-      <ion-card-content>
-        <ion-row>
-          <ion-item>
-            <ion-label position="stacked" class="font-weight-500"
-              >E-mail</ion-label
-            >
-            <ion-input
-              autofocus="true"
-              [clearInput]="true"
-              type="email"
-              class="font-weight-400"
-              placeholder="nome@email.com"
-              ngModel
-              email
-            ></ion-input>
-            <ion-note slot="helper">Insira um e-mail</ion-note>
-            <ion-note slot="error">E-mail inválido</ion-note>
-          </ion-item>
-        </ion-row>
-        <ion-row>
-          <ion-item>
-            <ion-label position="stacked">Senha</ion-label>
-            <ion-input
-              [clearInput]="true"
-              type="password"
-              placeholder="Insira sua senha"
-            ></ion-input>
-            <ion-note slot="helper">Insira uma senha válida</ion-note>
-          </ion-item>
-        </ion-row>
-        <div id="login-buttons">
+    <form [formGroup]="formLogin">
+      <ion-card color="purple">
+        <img
+          alt="Floating astronaut"
+          src="https://ouch-cdn2.icons8.com/wm0zXos_ml_B9g8yUd-a1TQj3TRz-FBLiAkW2t1SI98/rs:fit:299:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy91aS1lbGVt/LzMxMi8xODA0Yzhk/My00ZjVhLTQyYzMt/OTZmYS1mYWY2MmUx/ZjFiMTAucG5n.png"
+        />
+        <ion-card-header>
+          <ion-card-title style="font-size: 1.05rem; font-weight: 800"
+            >BEM-VINDO USUÁRIO!</ion-card-title
+          >
+          <ion-card-subtitle style="font-weight: 500"
+            >🌱 Venha ser mais um membro Forms</ion-card-subtitle
+          >
+        </ion-card-header>
+        <ion-card-content>
           <ion-row>
-            <ion-button
-              fill="outline"
-              expand="block"
-              color="tertiary"
-              class="font-weight-700"
-              >FAZER LOGIN</ion-button
-            >
+            <ion-item>
+              <ion-label position="stacked" class="font-weight-500"
+                >E-mail</ion-label
+              >
+              <ion-input
+                autofocus="true"
+                [clearInput]="true"
+                type="email"
+                class="font-weight-400"
+                placeholder="Insira seu Email"
+                formControlName="email"
+                email
+              ></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let error of errorMessages.email">
+              <ion-note
+                *ngIf="formLogin.get('email').hasError(error.type) &&
+                (formLogin.get('email').dirty ||
+                formLogin.get('email').touched)">
+                {{error.message}}
+                <ion-icon name="close" color="danger"></ion-icon>
+              </ion-note>
+            </ng-container>
           </ion-row>
-          <ion-row id="already-has-account">
-            <ion-label>Ainda não é usuário?</ion-label>
-            <ion-button
-              fill="outline"
-              expand="block"
-              color="lime"
-              routerLink="/register"
-              class="font-weight-700"
-              >REGISTRE-SE</ion-button
-            >
-            <a routerLink="/forgot-pass"><ion-label>Esqueceu sua senha?</ion-label></a>
+          <ion-row>
+            <ion-item>
+              <ion-label position="stacked">Senha</ion-label>
+              <ion-input
+                [clearInput]="true"
+                type="password"
+                placeholder="Insira sua senha"
+                formControlName="password"
+              ></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let error of errorMessages.password">
+              <ion-note
+                *ngIf="formLogin.get('password').hasError(error.type) &&
+                (formLogin.get('password').dirty ||
+                formLogin.get('password').touched)">
+                {{error.message}}
+                <ion-icon name="close" color="danger"></ion-icon>
+              </ion-note>
+            </ng-container>
           </ion-row>
-        </div>
-      </ion-card-content>
-    </ion-card>
+          <div id="login-buttons">
+            <ion-row>
+              <ion-button
+                fill="outline"
+                expand="block"
+                color="tertiary"
+                class="font-weight-700"
+                >FAZER LOGIN</ion-button
+              >
+            </ion-row>
+            <ion-row id="already-has-account">
+              <ion-label>Ainda não é usuário?</ion-label>
+              <ion-button
+                fill="outline"
+                expand="block"
+                color="lime"
+                routerLink="/register"
+                class="font-weight-700"
+                >REGISTRE-SE</ion-button
+              >
+              <a routerLink="/forgot-pass"><ion-label>Esqueceu sua senha?</ion-label></a>
+            </ion-row>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </form>
   </ion-grid>
 </ion-content>

@@ -31,7 +31,7 @@
                 [clearInput]="true"
                 type="text"
                 class="font-weight-400"
-                placeholder="nome"
+                placeholder="Insira seu Nome"
                 minlength="3"
                 formControlName="name"
                 autocomplete="name"
@@ -58,7 +58,7 @@
                 [clearInput]="true"
                 type="email"
                 class="font-weight-400"
-                placeholder="nome@email.com"
+                placeholder="Insira seu E-Mail"
                 formControlName="email"
                 ngModel
                 email
@@ -104,7 +104,6 @@
                 type="password"
                 placeholder="Insira sua senha"
                 formControlName="password"
-                pattern="password"
                 minlength="6"
                 maxlength="40"
               ></ion-input>
@@ -126,10 +125,9 @@
                 [clearInput]="true"
                 type="password"
                 formControlName="confirmPassword"
-                placeholder="Insira sua senha"
+                placeholder="Confirme sua senha"
                 minlength="6"
                 maxlength="40"
-                pattern="password"
               ></ion-input>
               <div class="error-message" *ngIf="!formRegister.get('confirmPassword').errors && formRegister.hasError('passwordNotMatch') && (formRegister.get('confirmPassword').dirty || formRegister.get('confirmPassword').touched)">
                 Password and Confirm Password fields should match

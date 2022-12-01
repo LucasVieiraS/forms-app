@@ -6,10 +6,6 @@ export function matchValidation(controlName: string, matchName: string) {
     const control = formGroup.controls[controlName];
     const match = formGroup.controls[matchName];
 
-    if (control.errors) {
-      return;
-    }
-
     if (control.value !== match.value) {
       match.setErrors({ match: true });
     } else {
