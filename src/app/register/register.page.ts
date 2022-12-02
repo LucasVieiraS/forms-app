@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../models/User';
+import { SessionService } from '../services/session.service';
 import { StorageService } from '../services/storage.service';
 
 import { CPFValidator } from '../utils/cpf-validation';
@@ -60,6 +61,7 @@ export class RegisterPage {
   constructor(
     private formBuilder: FormBuilder,
     private storageService: StorageService,
+    private sessionService: SessionService,
     private route: Router
   ) {
     this.formRegister = this.formBuilder.group(
@@ -101,18 +103,15 @@ export class RegisterPage {
   }
 
   async saveRegister() {
-    console.log('Register Status: ', this.formRegister.valid);
-    console.log(this.formRegister);
-    console.log(this.formRegister.errors);
     if (this.formRegister.valid) {
       this.user.name = this.formRegister.value.name;
       this.user.cpf = this.formRegister.value.cpf;
       this.user.email = this.formRegister.value.email;
       this.user.password = this.formRegister.value.password;
       await this.storageService.set(this.user.email, this.user);
-      this.route.navigateByUrl('/home');
-    } else {
-      alert('Registro Inválido.');
+      await this.sessionService.logIn(this.user);
+      return;
     }
+    alert('Registro Inválido.');
   }
 }

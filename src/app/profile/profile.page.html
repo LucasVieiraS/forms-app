@@ -1,0 +1,44 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="md">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button text="Voltar" color="danger"></ion-back-button>
+    </ion-buttons>
+    <ion-title>PERFIL</ion-title>
+    <ion-note style="padding-left: 1.2rem;">Informações</ion-note>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" mode="ios">
+  <ion-item>
+    <ion-icon name="pencil" slot="start"></ion-icon>
+    <ion-label class="font-weight-600">INFORMAÇÕES</ion-label>
+    <ion-note class="font-weight-600" style="float: right;"></ion-note>
+  </ion-item>
+  <ion-grid *ngIf="sessionData">
+
+    <ion-item>
+      <ion-label class="font-weight-600">Nome: </ion-label>
+      <ion-note style="float: right;">{{sessionData.name}}</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="font-weight-600">E-Mail: </ion-label>
+      <ion-note style="float: right;">{{sessionData.email}}</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="font-weight-600">CPF: </ion-label>
+      <ion-note style="float: right;">{{sessionData.cpf}}</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="font-weight-600">Senha: </ion-label>
+      <ion-note style="float: right;">{{sessionData.password}}</ion-note>
+    </ion-item>
+
+    <ion-button color="danger" (click)="logOut()" fill="outline" expand="full" shape="round">SAIR DA CONTA</ion-button>
+
+  </ion-grid>
+
+</ion-content>

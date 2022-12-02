@@ -1,17 +1,21 @@
 <ion-header mode="ios">
   <ion-toolbar mode="md">
     <ion-buttons slot="secondary">
-      <ion-button routerLink="/register">
+      <ion-button routerLink="/profile">
         <ion-icon slot="icon-only" name="person-circle"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title>HOME</ion-title>
+    <ion-note style="padding-left: 1.2rem;">Painel de Controle</ion-note>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" mode="ios">
   <ion-item>
-    <ion-label class="font-weight-600">{{usersList.length}} registro{{usersList.length > 1 && 's' || ''}} encontrado{{usersList.length > 1 && 's' || ''}}</ion-label>
+    <ion-icon name="pencil" slot="start"></ion-icon>
+    <ion-label class="font-weight-600">REGISTROS</ion-label>
+    <ion-note class="font-weight-600" style="float: right;">{{usersList.length}}
+      registro{{usersList.length !== 1 && 's' || ''}} encontrado{{(usersList.length !== 1) && 's' || ''}}</ion-note>
   </ion-item>
   <ion-grid>
     <ion-item-sliding *ngFor="let user of usersList">
@@ -23,7 +27,31 @@
       </ion-item>
 
       <ion-item-options>
-        <ion-item-option color="danger" (click)="removeRegister(user.email)"><ion-icon slot="icon-only" name="trash"></ion-icon></ion-item-option>
+        <ion-item-option color="danger" (click)="removeRegister(user.email)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-grid>
+  <ion-item>
+    <ion-icon name="cart" slot="start"></ion-icon>
+    <ion-label class="font-weight-600">PRODUTOS</ion-label>
+    <ion-note class="font-weight-600" style="float: right;">{{productsList.length}}
+      produto{{productsList.length !== 1 && 's' || ''}} encontrado{{productsList.length !== 1 && 's' || ''}}</ion-note>
+  </ion-item>
+  <ion-grid>
+    <ion-item-sliding *ngFor="let product of productsList">
+
+      <ion-item>
+        <ion-label>{{product.name}}</ion-label>
+        <ion-note style="float: right;">R$ {{product.price}}</ion-note>
+      </ion-item>
+
+      <ion-item-options>
+        <ion-item-option color="danger" (click)="removeRegister(product.name)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
       </ion-item-options>
 
     </ion-item-sliding>
