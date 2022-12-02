@@ -17,5 +17,4 @@ npm i
 ionic serve
 ```
 
-## Demo
-- [Demo](forms-app-psi.vercel.app/)
+[Demo](forms-app-psi.vercel.app/)
