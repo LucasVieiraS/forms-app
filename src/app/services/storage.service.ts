@@ -17,9 +17,18 @@ export class StorageService {
   async init() {
     const storage = await this.storage.create();
     this._storage = storage;
-    console.log(this.getAll());
   }
 
+  // Util
+  public async checkIfKeyEmpty(data: any, key: string) {
+    if (data === null) {
+      this.set(key, []);
+      data = [];
+    }
+    return data;
+  }
+
+  // Main Keys
   public async set(key: string, value: any) {
     await this._storage?.set(key, value);
   }
@@ -27,7 +36,7 @@ export class StorageService {
   public async get(key: string) {
     let data;
     await this._storage?.get(key).then((newData: User) => {
-      data = newData;
+      data = this.checkIfKeyEmpty(newData, key);;
     });
     return data;
   }
@@ -41,6 +50,43 @@ export class StorageService {
     this._storage.forEach((key, value, index) => {
       list.push(key);
     });
+    return list;
+  }
+
+  // Sub Keys
+  public async setAt(id: string, key: string, value: any) {
+    const existingData = await this.get(id);
+    existingData[key] = value;
+    await this._storage?.set(id, existingData);
+  }
+
+  public async getAt(id: string, key: string) {
+    let data;
+    await this._storage?.get(id).then((newData: User) => {
+      data = newData;
+    });
+    return data[key];
+  }
+
+  public async removeAt(id: string, key: string) {
+    const existingData = await this.get(id);
+    existingData[key] = null;
+    await this._storage?.set(id, existingData);
+    //this._storage?.remove(key);
+  }
+
+  public getAllAt(id: string) {
+    const list = [];
+    this._storage.forEach((value, key, index) => {
+      console.log(typeof(value), value, key, index);
+      if (key === id) {
+        value.forEach(element => {
+          console.log(element);
+          list.push(element);
+        });
+      }
+    });
+    console.log(id, list);
     return list;
   }
 }

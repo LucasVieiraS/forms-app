@@ -108,7 +108,7 @@ export class RegisterPage {
       this.user.cpf = this.formRegister.value.cpf;
       this.user.email = this.formRegister.value.email;
       this.user.password = this.formRegister.value.password;
-      await this.storageService.set(this.user.email, this.user);
+      await this.storageService.setAt('users', this.user.email, this.user);
       await this.sessionService.logIn(this.user);
       return;
     }

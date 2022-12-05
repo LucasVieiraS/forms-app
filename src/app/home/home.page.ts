@@ -17,13 +17,13 @@ export class HomePage {
   constructor(private storageService: StorageService, private sessionService: SessionService) { }
 
   async getUsers() {
-    this.usersList = await this.storageService.getAll();
+    this.usersList = await this.storageService.getAllAt('users');
     //this.productsList = await this.storageService.get('products');
   }
 
   async removeRegister(email: string) {
     const currentSession = await this.storageService.get('session');
-    await this.storageService.remove(email);
+    await this.storageService.removeAt('users', email);
     if (currentSession.email === email) {
       this.sessionService.logOut();
     }

@@ -51,7 +51,7 @@ export class LoginPage {
     if (this.formLogin.valid) {
       const email = this.formLogin.value.email;
       const password = this.formLogin.value.password;
-      const data = await this.storageService.get(email);
+      const data = await this.storageService.getAt('users', email);
       if (data != null && data.password === password) {
         this.sessionService.logIn(data);
         return;
