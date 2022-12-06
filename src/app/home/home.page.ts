@@ -18,7 +18,12 @@ export class HomePage {
 
   async getUsers() {
     this.usersList = await this.storageService.getAllAt('users');
-    //this.productsList = await this.storageService.get('products');
+    console.log(this.usersList);
+  }
+
+  async getProducts() {
+    this.productsList = await this.storageService.getAllAt('products');
+    console.log(this.productsList);
   }
 
   async removeRegister(email: string) {
@@ -30,8 +35,9 @@ export class HomePage {
     this.getUsers();
   }
 
-  ionViewWillEnter() {
+  ionViewDidEnter() {
     this.getUsers();
+    this.getProducts();
   }
 
 }

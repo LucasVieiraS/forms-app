@@ -57,6 +57,7 @@ export class StorageService {
   public async setAt(id: string, key: string, value: any) {
     const existingData = await this.get(id);
     existingData[key] = value;
+    console.log(existingData);
     await this._storage?.set(id, existingData);
   }
 
@@ -75,18 +76,13 @@ export class StorageService {
     //this._storage?.remove(key);
   }
 
-  public getAllAt(id: string) {
-    const list = [];
-    this._storage.forEach((value, key, index) => {
-      console.log(typeof(value), value, key, index);
+  public async getAllAt(id: string) {
+    let result: any = await this._storage.forEach((value, key, index) => {
       if (key === id) {
-        value.forEach(element => {
-          console.log(element);
-          list.push(element);
-        });
+        return value;
       }
     });
-    console.log(id, list);
-    return list;
+    result = result || [];
+    return result;
   }
 }
