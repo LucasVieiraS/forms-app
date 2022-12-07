@@ -1,7 +1,10 @@
 <ion-header mode="ios">
   <ion-toolbar mode="md">
     <ion-buttons slot="secondary">
-      <ion-button routerLink="/profile">
+      <ion-button routerLink="/register-product">
+        <ion-icon slot="icon-only" name="cart"></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/register">
         <ion-icon slot="icon-only" name="person-circle"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -11,29 +14,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" mode="ios">
-  <ion-item>
-    <ion-icon name="pencil" slot="start"></ion-icon>
-    <ion-label class="font-weight-600">REGISTROS</ion-label>
-    <ion-note class="font-weight-600" style="float: right;">{{usersList.length}}
-      registro{{usersList.length !== 1 && 's' || ''}} encontrado{{(usersList.length !== 1) && 's' || ''}}</ion-note>
-  </ion-item>
-  <ion-grid>
-    <ion-item-sliding *ngFor="let user of usersList">
-
-      <ion-item>
-        <ion-label>{{user.name}}</ion-label>
-        <ion-note style="float: right;">{{user.cpf}}</ion-note>
-        <a href="mailto:{{user.email}}">{{user.email}}</a>
-      </ion-item>
-
-      <ion-item-options>
-        <ion-item-option color="danger" (click)="removeRegister(user.email)">
-          <ion-icon slot="icon-only" name="trash"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-
-    </ion-item-sliding>
-  </ion-grid>
   <ion-item>
     <ion-icon name="cart" slot="start"></ion-icon>
     <ion-label class="font-weight-600">PRODUTOS</ion-label>
@@ -49,7 +29,7 @@
       </ion-item>
 
       <ion-item-options>
-        <ion-item-option color="danger" (click)="removeRegister(product.name)">
+        <ion-item-option color="danger" (click)="removeProduct(product)">
           <ion-icon slot="icon-only" name="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>

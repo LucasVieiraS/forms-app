@@ -1,0 +1,144 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="md">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button text="Voltar" color="danger"></ion-back-button>
+    </ion-buttons>
+    <ion-title>REGISTRAR PRODUTO</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" mode="ios">
+  <ion-grid>
+    <form [formGroup]="formProduct">
+      <ion-card color="purple">
+        <ion-card-content>
+
+          <ion-row>
+            <ion-item>
+              <ion-label position="stacked" class="font-weight-500"
+                >Nome</ion-label
+              >
+              <ion-input
+                autofocus="true"
+                [clearInput]="true"
+                type="text"
+                class="font-weight-400"
+                placeholder="Nome do Produto"
+                minlength="3"
+                formControlName="name"
+                autocomplete="name"
+              ></ion-input>
+
+            </ion-item>
+            <ng-container *ngFor="let error of errorMessages.name">
+              <ion-note
+                *ngIf="formProduct.get('name').hasError(error.type) &&
+                (formProduct.get('name').dirty ||
+                formProduct.get('name').touched)">
+                {{error.message}}
+                <ion-icon name="close" color="danger"></ion-icon>
+              </ion-note>
+            </ng-container>
+          </ion-row>
+
+          <ion-row>
+            <ion-item>
+              <ion-label position="stacked" class="font-weight-500"
+                >Descrição</ion-label
+              >
+              <ion-input
+                autofocus="true"
+                [clearInput]="true"
+                type="text"
+                class="font-weight-400"
+                placeholder="Descrição do Produto"
+                minlength="3"
+                formControlName="description"
+                autocomplete="description"
+              ></ion-input>
+
+            </ion-item>
+            <ng-container *ngFor="let error of errorMessages.description">
+              <ion-note
+                *ngIf="formProduct.get('description').hasError(error.type) &&
+                (formProduct.get('description').dirty ||
+                formProduct.get('description').touched)">
+                {{error.message}}
+                <ion-icon name="close" color="danger"></ion-icon>
+              </ion-note>
+            </ng-container>
+          </ion-row>
+
+          <ion-row>
+            <ion-item>
+              <ion-label position="stacked" class="font-weight-500"
+                >Preço</ion-label
+              >
+              <ion-input
+                autofocus="true"
+                [clearInput]="true"
+                type="number"
+                class="font-weight-400"
+                placeholder="Preço do Produto"
+                formControlName="price"
+                autocomplete="price"
+              ></ion-input>
+
+            </ion-item>
+            <ng-container *ngFor="let error of errorMessages.price">
+              <ion-note
+                *ngIf="formProduct.get('price').hasError(error.type) &&
+                (formProduct.get('price').dirty ||
+                formProduct.get('price').touched)">
+                {{error.message}}
+                <ion-icon name="close" color="danger"></ion-icon>
+              </ion-note>
+            </ng-container>
+          </ion-row>
+
+          <ion-row>
+            <ion-item>
+              <ion-label position="stacked" class="font-weight-500"
+                >Validade</ion-label
+              >
+              <ion-input
+                autofocus="true"
+                [clearInput]="true"
+                type="date"
+                class="font-weight-400"
+                placeholder="Validade do Produto"
+                formControlName="validity"
+                autocomplete="validity"
+              ></ion-input>
+
+            </ion-item>
+            <ng-container *ngFor="let error of errorMessages.validity">
+              <ion-note
+                *ngIf="formProduct.get('validity').hasError(error.type) &&
+                (formProduct.get('validity').dirty ||
+                formProduct.get('validity').touched)">
+                {{error.message}}
+                <ion-icon name="close" color="danger"></ion-icon>
+              </ion-note>
+            </ng-container>
+          </ion-row>
+
+
+          <div id="login-buttons">
+            <ion-row>
+              <ion-button
+                fill="outline"
+                expand="block"
+                color="tertiary"
+                class="font-weight-700"
+                (click)="saveRegister()"
+                >REGISTRAR</ion-button
+              >
+            </ion-row>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </form>
+  </ion-grid>
+</ion-content>

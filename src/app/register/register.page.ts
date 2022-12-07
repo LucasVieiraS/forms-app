@@ -1,12 +1,12 @@
+/* eslint-disable object-shorthand */
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '../models/User';
-import { SessionService } from '../services/session.service';
-import { StorageService } from '../services/storage.service';
+import { ToastController } from '@ionic/angular';
 
-import { CPFValidator } from '../utils/cpf-validation';
+import { StorageService } from '../services/storage.service';
 import { matchValidation } from '../utils/match-validation';
+import { User } from '../models/User';
 
 @Component({
   selector: 'app-register',
@@ -61,7 +61,7 @@ export class RegisterPage {
   constructor(
     private formBuilder: FormBuilder,
     private storageService: StorageService,
-    private sessionService: SessionService,
+    private toastController: ToastController,
     private route: Router
   ) {
     this.formRegister = this.formBuilder.group(
@@ -102,16 +102,29 @@ export class RegisterPage {
     );
   }
 
+  async notifyToast(message = 'Failed to load') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 1500,
+      icon: 'alert',
+      position: 'bottom'
+    });
+
+    await toast.present();
+  }
+
   async saveRegister() {
     if (this.formRegister.valid) {
       this.user.name = this.formRegister.value.name;
       this.user.cpf = this.formRegister.value.cpf;
       this.user.email = this.formRegister.value.email;
       this.user.password = this.formRegister.value.password;
-      await this.storageService.setAt('users', this.user.email, this.user);
-      await this.sessionService.logIn(this.user);
+      await this.storageService.set(this.user.email, this.user);
+      this.notifyToast('Usuário registrado com sucesso.');
+      this.route.navigateByUrl('/home');
       return;
     }
-    alert('Registro Inválido.');
+
+    this.notifyToast('Formulário inválido');
   }
 }

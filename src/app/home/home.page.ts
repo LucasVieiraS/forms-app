@@ -1,8 +1,10 @@
+/* eslint-disable object-shorthand */
 import { StorageService } from './../services/storage.service';
 import { Component } from '@angular/core';
 import { User } from '../models/User';
 import { Product } from '../models/Product';
-import { SessionService } from '../services/session.service';
+import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,32 +13,40 @@ import { SessionService } from '../services/session.service';
 })
 export class HomePage {
 
-  usersList: User[] = [];
   productsList: Product[] = [];
 
-  constructor(private storageService: StorageService, private sessionService: SessionService) { }
-
-  async getUsers() {
-    this.usersList = await this.storageService.getAllAt('users');
-    console.log(this.usersList);
-  }
+  constructor(
+    private storageService: StorageService,
+    private toastController: ToastController,
+    private route: Router
+    ) { }
 
   async getProducts() {
-    this.productsList = await this.storageService.getAllAt('products');
-    console.log(this.productsList);
+    this.productsList = await this.storageService.get('products');
   }
 
-  async removeRegister(email: string) {
-    const currentSession = await this.storageService.get('session');
-    await this.storageService.removeAt('users', email);
-    if (currentSession.email === email) {
-      this.sessionService.logOut();
-    }
-    this.getUsers();
+  async notifyToast(message = 'Failed to load') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 1500,
+      icon: 'alert',
+      position: 'bottom'
+    });
+
+    await toast.present();
+  }
+  async removeProduct(product: Product) {
+    const products = await this.storageService.get('products');
+    const index = products.findIndex(prod => prod.name === product.name);
+    products.splice(index, 1);
+
+    await this.storageService.set('products', products).then(() => {
+      this.getProducts();
+      this.notifyToast('Produto deletado com sucesso.');
+    });
   }
 
   ionViewDidEnter() {
-    this.getUsers();
     this.getProducts();
   }
 

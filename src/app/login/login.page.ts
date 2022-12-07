@@ -1,10 +1,10 @@
+/* eslint-disable object-shorthand */
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../models/User';
-import { SessionService } from '../services/session.service';
 import { StorageService } from '../services/storage.service';
-import { matchValidation } from '../utils/match-validation';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +27,11 @@ export class LoginPage {
     ]
   };
 
-  constructor(private formBuilder: FormBuilder, private sessionService: SessionService, private storageService: StorageService) {
+  constructor(private formBuilder: FormBuilder,
+    private storageService: StorageService,
+    private route: Router,
+    private toastController: ToastController
+  ) {
     this.formLogin = this.formBuilder.group(
       {
         email: [
@@ -46,18 +50,29 @@ export class LoginPage {
     );
   }
 
+  async notifyToast(message = 'Failed to load') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 1500,
+      icon: 'alert',
+      position: 'bottom'
+    });
+
+    await toast.present();
+  }
+
   async attemptLogin() {
-    console.log('Form Validness: ', this.formLogin.valid);
     if (this.formLogin.valid) {
-      const email = this.formLogin.value.email;
-      const password = this.formLogin.value.password;
-      const data = await this.storageService.getAt('users', email);
-      if (data != null && data.password === password) {
-        this.sessionService.logIn(data);
+      const data = await this.storageService.get(this.formLogin.value.email);
+      if (data && data.password === this.formLogin.value.password) {
+        this.route.navigateByUrl('/home');
+        this.notifyToast('Login realizado com sucesso.');
         return;
       }
+      this.notifyToast('Formulário inválido');
+      return;
     }
-    alert('Invalid Login');
+
   }
 
 }
